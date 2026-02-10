@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>for Tanisha</title>
+
+<style>
+body {
+  margin: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at top, #ffe4ef, #ffb6c1, #b11226);
+  font-family: Arial, sans-serif;
+  color: #4a0d1f;
+  text-align: center;
+  transition: background 4s ease;
+}
+
+.screen {
+  display: none;
+  padding: 40px 20px;
+  animation: fade 1.2s ease;
+}
+
+.screen.active { display: block; }
+
+@keyframes fade {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+button {
+  background: linear-gradient(135deg, #ffb6c1, #c21807);
+  color: white;
+  border: none;
+  border-radius: 35px;
+  padding: 14px 26px;
+  margin: 12px;
+  font-size: 16px;
+  box-shadow: 0 0 18px rgba(255,182,193,0.8);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+
+button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 30px rgba(255,182,193,1);
+}
+
+button:active { transform: scale(0.92); }
+
+.float {
+  position: fixed;
+  pointer-events: none;
+  animation: floatUp linear infinite;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(100vh); opacity: 0; }
+  to { transform: translateY(-10vh); opacity: 1; }
+}
+
+.burst {
+  position: fixed;
+  font-size: 28px;
+  animation: burst 1s ease forwards;
+}
+
+@keyframes burst {
+  from { transform: scale(0); opacity: 1; }
+  to { transform: scale(2.5); opacity: 0; }
+}
+
+/* us animation */
+.us {
+  font-size: 42px;
+  animation: breathe 4s ease-in-out infinite;
+  margin-top: 30px;
+}
+
+@keyframes breathe {
+  0% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 0.7; }
+}
+
+.whisper {
+  font-size: 13px;
+  opacity: 0.6;
+  margin-top: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<script>
+let current = 1
+let fireworksInterval
+
+function float(symbol, speed) {
+  const e = document.createElement("div")
+  e.className = "float"
+  e.innerText = symbol
+  e.style.left = Math.random()*100+"vw"
+  e.style.fontSize = Math.random()*22+18+"px"
+  e.style.animationDuration = speed+"s"
+  document.body.appendChild(e)
+  setTimeout(()=>e.remove(),12000)
+}
+
+setInterval(()=>float("💗", 11),900)
+setInterval(()=>float("🦋", 16),1500)
+
+function burst(x,y) {
+  const b=document.createElement("div")
+  b.className="burst"
+  b.innerText="💗"
+  b.style.left=x+"px"
+  b.style.top=y+"px"
+  document.body.appendChild(b)
+  setTimeout(()=>b.remove(),1000)
+}
+
+document.addEventListener("click",e=>burst(e.clientX,e.clientY))
+
+function show(n){
+  document.getElementById("s"+current).classList.remove("active")
+  current=n
+  document.getElementById("s"+current).classList.add("active")
+}
+
+function mood(t){
+  const text={
+    sad:`im sorry youre hurting  
+im sorry if i added to that pain  
+you dont have to carry this alone`,
+    angry:`im sorry for the frustration i caused  
+im sorry for not understanding you faster  
+even here i choose you`,
+    tired:`im sorry youre exhausted  
+rest here with me for a moment`,
+    miss:`im sorry for every second you felt my absence  
+i miss you deeply`
+  }
+  document.getElementById("s2").innerHTML =
+  <p>${text[t]}</p><button onclick="show(3)">continue</button>
+  show(2)
+}
+
+function choice(i){
+  const text=[
+    `come here  
+let me hold you gently  
+im sorry for hurting you  
+i want to be your safe place`,
+    `you are deeply loved  
+even when things feel heavy  
+im sorry for not saying it enough`,
+    `i love you because your heart is rare  
+because you feel deeply  
+because youre my forever`
+  ]
+  document.getElementById("s4").innerHTML =
+  <p>${text[i]}</p><button onclick="show(5)">next</button>
+  show(4)
+}
+
+function ending(){
+  document.body.style.background = "#ffd6e7"
+  show(6)
+}
+
+function replay(){
+  show(1)
+}
+</script>
+
+<div id="s1" class="screen active">
+  <p>
+hey my love Tanisha  
+you dont have to be okay here  
+tell me how youre feeling
+  </p>
+  <button onclick="mood('sad')">sad</button>
+  <button onclick="mood('angry')">angry</button>
+  <button onclick="mood('tired')">tired</button>
+  <button onclick="mood('miss')">miss you</button>
+</div>
+
+<div id="s2" class="screen"></div>
+
+<div id="s3" class="screen">
+  <p>
+im right here with you  
+what do you need from me
+  </p>
+  <button onclick="choice(0)">hug me</button>
+  <button onclick="choice(1)">something soft</button>
+  <button onclick="choice(2)">why you love me</button>
+</div>
+
+<div id="s4" class="screen"></div>
+
+<div id="s5" class="screen">
+  <p>
+stay here for a moment  
+feel the love around you
+  </p>
+  <button onclick="ending()">im here</button>
+</div>
+
+<div id="s6" class="screen">
+  <p>
+i dont need you to forgive me right now  
+i dont need everything to be okay  
+
+i just need you to know  
+that i love you deeply  
+that im sorry  
+and that my heart chooses you quietly every day  
+
+no rush  
+no pressure  
+just me loving you  
+
+from Rafay your love im sorry
+  </p>
+
+  <div class="us">🫂 💞</div>
+
+  <div class="whisper">
+tanishuu
+  </div>
+
+  <button onclick="replay()">replay</button>
+</div>
+
+</body>
+</html>
